@@ -1,3 +1,31 @@
+<?php
+
+    $baseUrl = "https://data.mongodb-api.com/app/data-ljpnp/endpoint/data/beta";
+    $apiKey = "e1GHeMpwtmRbct7QaYAl7IUmbXVcJQ55GCzWivtr3Nazqhu2dluzpbhVaGIDIZ7I";
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_URL, $baseUrl . '/action/find');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, '{"collection":"tran","database":"online_payment","dataSource":"Cluster0"}');
+    //curl_setopt($ch, CURLOPT_POSTFIELDS, '{"collection":"Admin","database":"online_payment","dataSource":"Cluster0", "filter":{"username": '.$un.', "password": '.$pw.'}}');
+    
+    $headers = array();
+    $headers[] = 'Content-Type: application/json';
+    $headers[] = 'Access-Control-Request-Headers: *';
+    $headers[] = 'Api-Key: ' . $apiKey;
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+    $result = curl_exec($ch);
+    if (curl_errno($ch)) {
+        echo 'Error:' . curl_error($ch);
+    }
+    $resultJson = json_decode($result);
+
+        
+    
+    
+?> 
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,7 +34,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Charts - SB Admin</title>
+        <title>comptes bancaire</title>
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
@@ -19,22 +47,9 @@
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                 </div>
             </form>
-            <!-- Navbar-->
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Settings</a></li>
-                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
+            <a href="logout.php" class="btn btn-danger">Logout</a>        
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
@@ -54,23 +69,23 @@
                                                 Dashboard
                                             </a>
                                             <a class="nav-link" href="utlisateurs.php">
-                                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                                <div class="sb-nav-link-icon"><i class=""></i></div>
                                                 Utlisateurs
                                             </a>
                                             <a class="nav-link" href="portefeuile.php">
                                                 <div class="sb-nav-link-icon"><i class=""></i></div>
-                                                portefeuile
+                                                portefeuille
                                             </a>
                                             <a class="nav-link" href="marche.php">
-                                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                                <div class="sb-nav-link-icon"><i class=""></i></div>
                                                 marche
                                             </a>
                                             <a class="nav-link" href="banques.php">
-                                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                                <div class="sb-nav-link-icon"><i class=""></i></div>
                                                 banques
                                             </a>
                                             <a class="nav-link" href="compteBancaire.php">
-                                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                                <div class="sb-nav-link-icon"><i class=""></i></div>
                                                 comptes bancaire
                                             </a>
                                            
@@ -85,60 +100,59 @@
                                                     
                                                 </nav>
                                             </div>
-                                            <div class="sb-sidenav-menu-heading">Addons</div>
-                                            <a class="nav-link" href="charts.html">
-                                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                                Charts
-                                            </a>
                                             
-                                        </div>
                                     </div>
                                     
                                 </nav>
                             </div>
+                    </div>
+                   
+                </nav>
+            </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Charts</h1>
+                        <h1 class="mt-4">Tables</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Charts</li>
+                            <li class="breadcrumb-item active">Tables</li>
                         </ol>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                Chart.js is a third party plugin that is used to generate the charts in this template. The charts below have been customized - for further customization options, please visit the official
-                                <a target="_blank" href="https://www.chartjs.org/docs/latest/">Chart.js documentation</a>
-                                .
-                            </div>
-                        </div>
+                      
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-chart-area me-1"></i>
-                                Area Chart Example
+                                <i class="fas fa-table me-1"></i>
+                                DataTable Example
                             </div>
-                            <div class="card-body"><canvas id="myAreaChart" width="100%" height="30"></canvas></div>
-                            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        Bar Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
-                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-pie me-1"></i>
-                                        Pie Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
-                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                                </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>Date de transcation</th>
+                                            <th>Montent</th>
+                                            <th>ID du First Compte</th>
+                                            <th>ID du Second compte</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                      foreach ($resultJson->{'documents'} as $item) {
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $item->{'Date_transcation'} ?></td>
+                                            <td><?php echo $item->{'Montent'} ?></td>
+                                            <td><?php echo $item->{'First_CompteID'} ?></td>
+                                            <td><?php echo $item->{'Second_compteID'} ?></td>
+                                            
+                                        </tr>
+                                        <?php
+                                            }
+                                        curl_close($ch);
+                                        ?>
+                                       
+                                    </tbody>
+                                
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -148,9 +162,7 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="assets/demo/chart-pie-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="js/datatables-simple-demo.js"></script>
     </body>
 </html>

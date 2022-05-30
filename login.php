@@ -74,7 +74,7 @@ if (isset($_POST['submit'])) {
     foreach ($resultJson->{'documents'} as $item) {
     
         $username = $item->{'username'};
-        $password = $item->{'username'};
+        $password = $item->{'password'};
     
     
         if ($un == $username && $pw == $password) {
