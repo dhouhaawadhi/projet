@@ -158,7 +158,7 @@
                                                 </td>
                                             </form>
                                             <td>
-                                            <a class="btn btn-primary" href="modif.php?idf_02=<?php echo $item->{'_id'} ?>" name="upd" id="upd">Editer</a>
+                                            <a class="btn btn-primary" href="modif.php?user=<?php echo $item->{'_id'} ?>" name="upd" id="upd">Editer</a>
                                             </td>
                                         </tr>
                                         <?php
