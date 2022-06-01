@@ -61,22 +61,21 @@
         <img class="ronde1" src="images\image.png" alt="logo">
         <h2>Login</h2>
 
-        <form method="post" action="modif.php">
+        <form method="post" action="modif_user.php">
+            
+            <input type="hidden" name="user" id="user" value="<?php echo $idf ?>">
             <label>user name</label>
-            <input type="text" name="username" id="username" placeholder="Name" autocomplete="off" value="<?php echo $user_name ?>">
+            <input type="text" name="name" id="username" placeholder="Name" autocomplete="off" value="<?php echo $user_name ?>">
 
             <label>lastname</label>
-            <input type="text" name="username" id="username" placeholder="Lastname" autocomplete="off" value="<?php echo $user_lastname ?>">
+            <input type="text" name="lastname" id="lastname" placeholder="Lastname" autocomplete="off" value="<?php echo $user_lastname ?>">
 
             <label>email</label>
-            <input type="text" name="username" id="username" placeholder="Email" autocomplete="off" value="<?php echo $user_email; ?>">
+            <input type="text" name="email" id="email" placeholder="Email" autocomplete="off" value="<?php echo $user_email; ?>">
 
 
             <label>password</label>
-            <input type="password" name="password" id="pass" placeholder="password" autocomplete="off" value="<?php echo $user_password ?>">
-
-
-
+            <input type="password" name="password" id="password" placeholder="password" autocomplete="off" value="<?php echo $user_password ?>">
 
             <div class="btns">
                 <button type="submit" name="submit" id="sub">Login</button>
